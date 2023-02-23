@@ -5,6 +5,17 @@ import { Router } from "@edgio/core/router";
 import { vueRoutes } from "@edgio/vue-cva";
 
 export default new Router()
+  .get("/coffee", ({ cache }) => {
+    cache({
+      browser: {
+        maxAgeSeconds: 0,
+        serviceWorkerSeconds: 30,
+      },
+      edge: {
+        maxAgeSeconds: 60 * 30,
+      },
+    });
+  })
   .get("/api/coffee", ({ proxy, cache }) => {
     cache({
       browser: {

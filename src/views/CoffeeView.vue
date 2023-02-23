@@ -13,7 +13,21 @@ const coffees = ref<ICoffee[]>([]);
 
 onMounted(async () => {
   const resp = await fetch("/api/coffee");
-  coffees.value = await resp.json();
+  try {
+    coffees.value = await resp.json();
+  } catch (e) {
+    coffees.value = [
+      {
+        title: "Black",
+        description:
+          "Black coffee is as simple as it gets with ground coffee beans steeped in hot water, served warm. And if you want to sound fancy, you can call black coffee by its proper name: cafe noir.",
+        ingredients: ["Coffee"],
+        image:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG",
+        id: 1,
+      },
+    ];
+  }
 });
 </script>
 

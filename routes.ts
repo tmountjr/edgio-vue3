@@ -4,7 +4,17 @@
 import { Router } from "@edgio/core/router";
 import { vueRoutes } from "@edgio/vue-cva";
 
-// const ONE_HOUR = 60 * 60
-// const ONE_DAY = 24 * ONE_HOUR
-
-export default new Router().use(vueRoutes);
+export default new Router()
+  .get("/api/coffee", ({ proxy, cache }) => {
+    cache({
+      browser: {
+        maxAgeSeconds: 0,
+        serviceWorkerSeconds: 60,
+      },
+      edge: {
+        maxAgeSeconds: 60 * 60,
+      },
+    });
+    proxy("coffee", { path: "/coffee/hot" });
+  })
+  .use(vueRoutes);

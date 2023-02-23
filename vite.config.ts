@@ -1,7 +1,7 @@
-import { fileURLToPath, URL } from "node:url";
-import vue from "@vitejs/plugin-vue";
-
 import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { fileURLToPath, URL } from "node:url";
+
 import { VitePWA, type VitePWAOptions } from "vite-plugin-pwa";
 
 const pwaOptions: Partial<VitePWAOptions> = {
@@ -10,6 +10,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
   },
   srcDir: "sw",
   filename: "service-worker.js",
+  injectRegister: null,
 };
 
 // https://vitejs.dev/config/

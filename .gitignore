@@ -30,3 +30,4 @@ coverage
 # Edgio generated build directory
 .edgio
 .edgio_temp
+dev-dist/
